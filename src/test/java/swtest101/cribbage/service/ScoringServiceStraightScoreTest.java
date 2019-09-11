@@ -56,6 +56,7 @@ public class ScoringServiceStraightScoreTest {
 				
 		// verificacao
 		assertEquals(expectedScore, score);
+		// joao paulo
 	}
 
 }
