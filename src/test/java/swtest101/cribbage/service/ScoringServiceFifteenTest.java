@@ -1,6 +1,6 @@
 package swtest101.cribbage.service;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,18 +15,21 @@ import org.junit.runners.Parameterized.Parameters;
 import swtest101.cribbage.entity.Card;
 
 @RunWith(Parameterized.class)
-public class ScoringServiceStraightScoreTest {
+public class ScoringServiceFifteenTest {
 
 	@Parameters(name = "{0}_Should_Return_{1} - {2}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
-			{"JHAS0D9SKH", 0, "None Straight"},
-			{"AH2S3D9SKH", 3, "One Straight of three cards"},
-			{"JHAS8C9S0H", 3, "One Straight of four cards"},
-			{"AH2S4D5S7H", 0, "None Straight"},
-			{"0HJSQDKS0H", 3, "One Straight of three cards"},
-			{"AH2S3D4S5H", 5, "One Straight of five cards"},
-			{"AHAS0D0S0H", 0, "None Straight"}
+			{"JHAS0D9SKH", 0, "!= 15 points"},
+			{"AH2H3H2S0C", 6, "3x = 15 points"},
+			{"JCAC8C9S0C", 0, "!= 15 points"},
+			{"AC2C0C5C7C", 4, "2x = 15 points"},
+			{"0HJSQDKS0H", 0, "!= 15 points"},
+			{"0H2S7D4S5H", 2, "1x = 15 points"},
+			{"2D3H5CJSQD", 8, "4x = 15 points"},
+			{"5D5S0CJHKH", 12, "6x = 15 points"},
+			{"5D5S5H5C0S", 16, "8x = 15 points"},
+			{"AH2S3D4S5H", 2, "1x = 15 points"},
 		});
 	}
 	
@@ -40,23 +43,18 @@ public class ScoringServiceStraightScoreTest {
 	public String textTest;
 
 	
-//	@Parameter(2)
-//	public static String textTest;
-	
 	@Test
-	public void testCalculateStraightScore() {
+	public void testCalculateFifteenScore() {
 		
-		// configuracao
+		// Configuraçao
 		List<Card> cards = ParseStringService.parseToListOfCards(handOfStrings);
 		
-		// acao
-		Integer score = ScoringService.calculateStraightScore(cards); 
-//				ScoringService.calculateScore(handOfCards);
+		// Acao
+		Integer score = ScoringService.calculateFifteenScore(cards); 
 	
 				
-		// verificacao
+		// Verificacao
 		assertEquals(expectedScore, score);
-		// joao paulo
 	}
 
 }

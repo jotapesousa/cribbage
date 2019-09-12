@@ -5,7 +5,10 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses(value = { ScoringServicePairScoreTest.class, ParseToCardTest.class, ParseToCardExceptionalTest.class })
+@SuiteClasses(value = { ParseToCardExceptionalTest.class, ParseToCardTest.class, ParseToListOfCardsTest.class
+		, ParseToListOfStringsExceptionalTest.class, ParseToListOfStringsTest.class, ScoringServicePairTest.class
+		, ScoringServiceStraightTest.class, ScoringServiceFlushTest.class, ScoringServiceNobTest.class
+		, ScoringServiceFifteenTest.class})
 public class AllTests {
 
 }

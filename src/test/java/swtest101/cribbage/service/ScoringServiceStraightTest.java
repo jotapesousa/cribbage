@@ -1,6 +1,6 @@
 package swtest101.cribbage.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,17 +15,18 @@ import org.junit.runners.Parameterized.Parameters;
 import swtest101.cribbage.entity.Card;
 
 @RunWith(Parameterized.class)
-public class ScoringServiceFlushScoreTest {
+public class ScoringServiceStraightTest {
 
 	@Parameters(name = "{0}_Should_Return_{1} - {2}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
-			{"JHAS0D9SKH", 0, "No Flush"}
-//			{"AH2H3H9SKH", 4, "One flush at first four cards"},
-//			{"JCAC8C9S0C", 4, "One flush at last four cards"},
-//			{"AC2C0C5C7C", 5, "One flush on five car"},
-//			{"0HJSQDKS0H", 0, "No flush"},
-//			{"AH2S3D4S5H", 0, "No flush"}
+			{"JHAS0D9SKH", 3, "1 Straight of three cards"},
+			{"AH2S3D9SKH", 3, "One Straight of three cards"},
+			{"JHAS8C9S0H", 4, "One Straight of four cards"},
+			{"AH2S4D5S7H", 0, "None Straight"},
+			{"0HJSQDKS0H", 3, "One Straight of three cards"},
+			{"AH2S3D4S5H", 5, "One Straight of five cards"},
+			{"AHAS0D0S0H", 0, "None Straight"}
 		});
 	}
 	
@@ -39,23 +40,18 @@ public class ScoringServiceFlushScoreTest {
 	public String textTest;
 
 	
-//	@Parameter(2)
-//	public static String textTest;
-	
 	@Test
-	public void testCalculateFlushScore() {
+	public void testCalculateStraightScore() {
 		
-		// Configuraçao
+		// configuracao
 		List<Card> cards = ParseStringService.parseToListOfCards(handOfStrings);
 		
-		// Acao
-		Integer score = ScoringService.calculateFlushScore(cards); 
-//				ScoringService.calculateScore(handOfCards);
+		// acao
+		Integer score = ScoringService.calculateStraightScore(cards); 
 	
 				
-		// Verificacao
+		// verificacao
 		assertEquals(expectedScore, score);
 	}
 
 }
-
